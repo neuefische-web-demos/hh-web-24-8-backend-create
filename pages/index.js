@@ -1,5 +1,6 @@
 import useSWR from "swr";
 import Link from "next/link";
+import JokeForm from "@/components/JokeForm";
 
 export default function HomePage() {
   const { data, isLoading, mutate } = useSWR("/api/jokes");
@@ -38,13 +39,7 @@ export default function HomePage() {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Joke:
-          <input type="text" name="joke" />
-          <button type="submit">submit</button>
-        </label>
-      </form>
+      <JokeForm onSubmit={handleSubmit} />
       <ul>
         {data.map((joke) => (
           <li key={joke._id}>

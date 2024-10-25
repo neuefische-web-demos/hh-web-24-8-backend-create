@@ -17,5 +17,22 @@ export default async function handler(request, response) {
     return;
   }
 
+  if (request.method === "PUT") {
+    const updatedJoke = request.body;
+    console.log(updatedJoke);
+
+    await Joke.findByIdAndUpdate(id, updatedJoke);
+
+    response.status(200).json({ status: "success!" });
+    return;
+  }
+
+  if (request.method === "DELETE") {
+    await Joke.findByIdAndDelete(id);
+
+    response.status(200).json({ status: "succcess" });
+    return;
+  }
+
   response.status(405).json({ status: "Method not allowed." });
 }
